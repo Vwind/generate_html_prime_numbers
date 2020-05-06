@@ -1,0 +1,116 @@
+- name: Setup Java JDK
+  uses: actions/setup-java@v1.3.0
+  with:
+    # The Java version to make available on the path. Takes a whole or semver Java version, or 1.x syntax (e.g. 1.8 => Java 8.x)
+    java-version: 
+    # The package type (jre, jdk, jdk+fx)
+    java-package: # optional, default is jdk
+    # The architecture (x86, x64) of the package.
+    architecture: # optional, default is x64
+    # Path to where the compressed JDK is located. The path could be in your source repository or a local path on the agent.
+    jdkFile: # optional
+    # ID of the distributionManagement repository in the pom.xml file. Default is `github`
+    server-id: # optional
+    # Environment variable name for the username for authentication to the Apache Maven repository. Default is $GITHUB_ACTOR
+    server-username: # optional
+    # Environment variable name for password or token for authentication to the Apache Maven repository. Default is $GITHUB_TOKEN
+    server-password: # optional
+    # Path to where the settings.xml file will be written. Default is ~/.m2.
+    settings-path: # optional
+
+Programa numeros primos
+
+
+public class Primos {
+
+public static void main (String args[]){
+		
+
+	
+		double num;
+		int i, j;
+		double arrayPrimos[];
+		boolean primo;
+		int numerocolunas;
+		int numerocelulastabela = 56800;
+		int numerodeprimos = 1; 
+		
+		arrayPrimos = new double[numerocelulastabela];
+		
+		arrayPrimos[0] = 2; // primeiro primo e 2
+		
+		for (j = 1; j < numerocelulastabela; j++) {
+			
+			arrayPrimos[j] = 0;
+			
+		}
+		
+
+
+		System.out.println("<table align = \"center\" border =\"5\" width = 85%>");
+		
+		for (num = 3; num<700000; num+=2) {
+			
+			i = 0; // reinicializa o indice da matriz de primos para a divisao
+			primo = true; // supoe que o proximo numero e primo
+			
+			while (arrayPrimos[i] != 0){
+			
+			
+				if (num%arrayPrimos[i] == 0) {
+					primo= false;
+					break;
+				}
+				else{
+
+				}
+			
+				i++; //desloca para prosimo primo
+			}
+
+			if (primo){
+				arrayPrimos[i] = num;
+				numerodeprimos += 1;
+			}
+			
+		}
+		
+
+		numerocolunas = 0;
+		
+		for (j = 0; j < numerocelulastabela; j++) {
+		
+
+			
+			if (numerocolunas > 5) {
+				
+				numerocolunas = 0;
+				
+			}
+			
+			if (numerocolunas == 0){
+				System.out.print("<tr>");	
+			}			
+			
+			
+			System.out.print("<td align = \"center\">");	
+			System.out.printf("%.0f",arrayPrimos[j]);
+			System.out.print("</td> ");	
+
+			if (numerocolunas == 5){
+				System.out.println("</tr>");	
+			}
+
+			numerocolunas += 1;
+			
+		}
+
+		System.out.println("\n </table>");
+		System.out.print("Numero de primos ate " + numerodeprimos);
+
+    }
+
+
+}
+
+
